@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>有責無患，浪愛歸巢 - 畢業專題官網</title>
+    <!-- 引入 FontAwesome 與 Bootstrap 樣式 -->
+    <link rel="stylesheet" href="fontawesome-5.5/css/all.min.css" />
+    <link rel="stylesheet" href="slick/slick.css">
+    <link rel="stylesheet" href="slick/slick-theme.css">
+    <!-- Magnific Popup 燈箱樣式 -->
+    <link rel="stylesheet" href="magnific-popup/magnific-popup.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/tooplate-infinite-loop.css" />
+    <style>
+      /* 平滑滾動 */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* 全域高質感深色背景與文字配色 */
+      .bg-dark { background-color: #141f26 !important; }
+      .tm-text-primary { color: #38b6ff !important; }
+      .text-light-muted { color: #dedede !important; }
+      
+      /* 固定導覽列樣式與過渡效果 */
+      .tm-navbar {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        transition: background-color 0.3s ease, padding 0.3s ease;
+      }
+
+      .navbar-brand {
+        font-size: 1.8rem !important;
+      }
+      .navbar-nav .nav-link {
+        font-size: 1.25rem !important;
+      }
+
+      .tm-section-title {
+        font-size: 2.8rem !important; /* 放大區塊標題 */
+      }
+
+      /* 全域段落與說明文字放大 */
+      .enlarged-text {
+        font-size: 1.4rem !important;
+        line-height: 2.0 !important;
+      }
+
+      .hero-center-wrapper {
+        position: relative;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero-title-row {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero-logo-inline {
+        position: absolute;
+        right: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        max-width: 120px;
+        width: 120px;
+        height: auto;
+        margin-right: 25px;
+        filter: drop-shadow(0px 0px 15px rgba(255, 255, 255, 0.9)) 
+                drop-shadow(0px 0px 30px rgba(56, 182, 255, 0.75))
+                brightness(1.15);
+        transition: transform 0.3s ease, filter 0.3s ease;
+      }
+      .hero-logo-inline:hover {
+        transform: translateY(-50%) scale(1.08);
+      }
+
+      .section-logo {
+        max-width: 380px;
+        width: 100%;
+        height: auto;
+        filter: drop-shadow(0px 0px 12px rgba(255, 255, 255, 0.85)) brightness(1.15);
+        transition: transform 0.3s ease;
+      }
+      .section-logo:hover {
+        transform: scale(1.03);
+      }
+
+      .logo-container-card {
+        background: rgba(20, 31, 38, 0.65);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(8px);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        border-radius: 20px;
+        padding: 25px 15px;
+      }
+
+      @media (max-width: 991px) {
+        .hero-title-row {
+          flex-direction: column;
+        }
+        .hero-logo-inline {
+          position: relative;
+          right: auto;
+          top: auto;
+          transform: none;
+          margin-right: 0;
+          margin-bottom: 15px;
+        }
+      }
+
+      .parallax-window {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        position: relative;
+      }
+      
+      .custom-overlay {
+        background: rgba(20, 31, 38, 0.65);
+        width: 100%;
+        height: 100%;
+      }
+
+      .team-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        padding: 25px 20px;
+        transition: all 0.3s ease;
+        height: 100%;
+      }
+      .team-card:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.08);
+        border-color: #38b6ff;
+      }
+      .team-img {
+        width: 130px;
+        height: 130px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 3px solid rgba(255, 255, 255, 0.2);
+        margin-bottom: 15px;
+      }
+      .team-card figcaption {
+        font-size: 1.35rem;
+        font-weight: bold;
+        color: #38b6ff;
+      }
+
+      .popup-link, .gallery-lightbox {
+        display: block;
+        overflow: hidden;
+        cursor: pointer;
+      }
+      .popup-link img, .gallery-lightbox img {
+        transition: transform 0.3s ease;
+      }
+      .popup-link:hover img, .gallery-lightbox:hover img {
+        transform: scale(1.03);
+      }
+    </style>
+  </head>
+  <body class="bg-dark text-white">    
+    
+    <!-- 固定導覽列 Navbar -->
+    <nav class="navbar navbar-expand-md tm-navbar" id="tmNav">            
+      <div class="container py-2">  
+        <div class="tm-next">
+            <a href="#infinite" class="navbar-brand font-weight-bold text-white d-flex align-items-center" style="letter-spacing: 1px;">
+              有責無患，浪愛歸巢
+            </a>
+        </div>            
+        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars navbar-toggler-icon"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto" style="gap: 10px;">
+            <li class="nav-item"><a class="nav-link tm-nav-link text-white px-3" href="#infinite">首頁</a></li>
+            <li class="nav-item"><a class="nav-link tm-nav-link text-white px-3" href="#whatwedo">理念動機與大綱</a></li>
+            <li class="nav-item"><a class="nav-link tm-nav-link text-white px-3" href="#logo-section">LOGO標誌與理念</a></li>
+            <li class="nav-item"><a class="nav-link tm-nav-link text-white px-3" href="#gallery">SWOT/甘特圖/分鏡展示</a></li>
+            <li class="nav-item"><a class="nav-link tm-nav-link text-white px-3" href="#testimonials">製作團隊</a></li>
+            <li class="nav-item"><a class="nav-link tm-nav-link text-white px-3" href="#contact">專題預告</a></li>                
+          </ul>
+        </div>        
+      </div>
+    </nav>
+
+    <!-- 首頁 Hero Section -->
+    <section id="infinite" class="text-white tm-font-big parallax-window" style="background-image: url('img/dog1.jpg'); min-height: 100vh;">
+      <div class="custom-overlay d-flex flex-column align-items-center justify-content-start" style="min-height: 100vh; padding-top: 500px; padding-bottom: 50px;">
+        <div class="container text-center">
+          <div class="hero-center-wrapper">
+            <div class="hero-title-row">
+              <img src="img/Image-removebg-preview.png" alt="專題LOGO" class="hero-logo-inline img-fluid">
+              <h2 class="tm-hero-title mb-2" style="text-shadow: 0 4px 15px rgba(0,0,0,0.9); font-weight: bold; font-size: 3.2rem; white-space: nowrap;">有責無患，浪愛歸巢</h2>
+            </div>
+            <p class="tm-hero-subtitle mb-0 text-center" style="text-shadow: 0 2px 10px rgba(0,0,0,0.9); font-size: 1.6rem; white-space: nowrap;">—— 轉身之後，給牠一個不再流浪的承諾 ——</p>
+            <div class="tm-next text-center" style="margin-top: 35px;">
+              <a href="#whatwedo" class="text-center tm-down-arrow-link d-inline-block">
+                <i class="fas fa-2x fa-arrow-down tm-down-arrow"></i>
+              </a>
+            </div>
+          </div>        
+        </div>
+      </div>      
+    </section>
+
+    <!-- 研究動機與企劃大綱 -->
+    <section id="whatwedo" class="tm-section-pad-top bg-dark text-white">
+      <div class="container">
+        <div class="row tm-content-box mb-4">
+          <div class="col-lg-12">
+            <div class="tm-intro-text-container">
+              <h2 class="tm-text-primary mb-3 tm-section-title">創作理念與研究動機</h2>
+              <p class="mb-3 text-light-muted enlarged-text">隨著社會型態轉變，寵物已成為陪伴人類的重要家庭成員，但流浪動物與棄養問題依然嚴峻。</p>
+              <p class="mb-3 text-light-muted enlarged-text">本專題旨在透過實地拍攝收容所與中途之家，深度訪談工作人員、救援志工及領養家庭，記錄民間救援工作的真實樣貌與動人故事。</p>
+              <p class="mb-4 text-light-muted enlarged-text">我們期待藉由真實影像探討流浪貓狗問題的成因與防範，呈現動保工作背後的挑戰與付出，進而喚起大眾對生命價值的重視，深度推廣「以領養代替購買、終養不棄養」的責任飼養觀念。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row tm-content-box mb-5">
+          <div class="col-lg-12">
+            <div class="tm-intro-text-container">
+              <h2 class="tm-text-primary mb-3 tm-section-title">專題大綱</h2>
+              <p class="mb-3 text-light-muted enlarged-text">現代人生活壓力增加，以「領養代替生育」帶動寵物需求，卻也引發過度繁殖與棄養暴增問題。</p>
+              <p class="mb-3 text-light-muted enlarged-text">儘管《動保法》推動與資源挹注改善了部分環境，流浪動物數量過多、收容所空間與資源匱乏的問題依然嚴峻。</p>
+              <p class="mb-4 text-light-muted enlarged-text">所以我們打算造訪動物之家，了解目前流浪動物過多造成的麻煩與困擾，希望透過紀錄收容所與流浪動物的方式，讓更多人了解牠們的處境。</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row tm-content-box align-items-center">
+          <div class="col-lg-1 text-center"><i class="far fa-3x fa-heart tm-icon"></i></div>
+          <div class="col-lg-5 mb-4">
+            <h2 class="tm-text-primary mb-3" style="font-size: 1.8rem; font-weight: bold;">有責無患</h2>
+            <p class="text-light-muted" style="line-height: 1.9; font-size: 1.25rem;">深入探討飼主在面對生命時應有的法律與道德責任。強調不棄養、定期施打疫苗、絕育與晶片登記等核心觀念，宣導從源頭減少浪浪問題的發生。</p>
+          </div>
+          <div class="col-lg-1 text-center"><i class="far fa-3x fa-comment-alt tm-icon"></i></div>
+          <div class="col-lg-5 mb-4">
+            <h2 class="tm-text-primary mb-3" style="font-size: 1.8rem; font-weight: bold;">社會議題訪談</h2>
+            <p class="text-light-muted" style="line-height: 1.9; font-size: 1.25rem;">透過鏡頭記錄民間流浪動物收容所、動物之家的真實運作與救援者、志工們的心路歷程。帶領觀眾深入了解社會隱蔽角落的辛勞付出。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 獨立 LOGO 展示與設計理念區塊 -->
+    <section id="logo-section" class="parallax-window text-white" style="background-image: url('img/cat2.jpg');">
+      <div class="custom-overlay" style="padding-top: 100px; padding-bottom: 100px;">
+        <div class="container">
+          <div class="row">
+            <div class="text-center col-12">
+              <h2 class="tm-section-title font-weight-bold mb-5" style="text-shadow: 0 2px 8px rgba(0,0,0,0.9);">LOGO 標誌與設計理念</h2>
+            </div>
+          </div>
+          <div class="row align-items-center justify-content-center">
+            <div class="col-12 col-md-6 col-lg-5 text-center mb-4 mb-md-0">
+              <div class="logo-container-card">
+                <a href="img/Image-removebg-preview.png" class="popup-link" title="專題 LOGO 標誌">
+                  <img src="img/Image-removebg-preview.png" alt="專題LOGO" class="section-logo img-fluid mx-auto d-block">
+                </a>
+              </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-6">
+              <div class="p-4 rounded shadow-lg" style="background: rgba(20, 31, 38, 0.85); border: 1px solid rgba(255, 255, 255, 0.2);">
+                <h3 class="tm-text-primary mb-3 font-weight-bold" style="font-size: 2rem;"><i class="fas fa-lightbulb mr-2"></i>設計理念</h3>
+                <p class="text-light-muted" style="font-size: 1.35rem; line-height: 2.0;">
+                  整體以愛心做為核心造型，象徵動物保護的溫柔初心。貓、狗剪影互相凝望，代表等待家園的毛孩。中心屋舍意象對應標題「浪愛歸巢」，傳達流浪動物尋覓安穩棲所的願望。門牌標示1959動保專線，做為民眾通報救援、協助流浪動物的服務窗口。色調選用沉穩深藍與柔和淺青，平衡公益專業感與親民氣息。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SWOT / 甘特圖 / 分鏡展示區塊 -->
+    <section id="gallery" class="tm-section-pad-top bg-dark text-white" style="padding-bottom: 100px;">
+      <div class="container">
+        <div class="row">
+          <div class="text-center col-12">
+            <h2 class="tm-text-primary tm-section-title font-weight-bold mb-5">SWOT / 甘特圖 / 分鏡展示</h2>
+          </div>
+        </div>
+
+        <!-- SWOT 分析圖 -->
+        <div class="row justify-content-center mb-5">
+          <div class="col-12 col-md-10 col-lg-8 text-center">
+            <div class="p-3 rounded" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08);">
+              <h4 class="text-white mb-3" style="font-size: 1.6rem; font-weight: bold;">SWOT 分析圖</h4>
+              <a href="img/image112.png" class="popup-link" title="SWOT 分析圖">
+                <img src="img/image112.png" alt="SWOT分析" class="img-fluid rounded shadow-sm mx-auto d-block" style="max-width: 800px; width: 100%;">
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 甘特圖進度表 -->
+        <div class="row justify-content-center mb-5">
+          <div class="col-12 col-md-10 col-lg-8 text-center">
+            <div class="p-3 rounded" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08);">
+              <h4 class="text-white mb-3" style="font-size: 1.6rem; font-weight: bold;">甘特圖進度表</h4>
+              <a href="img/image2.jpg" class="popup-link" title="甘特圖進度表">
+                <img src="img/image2.jpg" alt="甘特圖進度表" class="img-fluid rounded shadow-sm mx-auto d-block" style="max-width: 800px; width: 100%;">
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 分鏡腳本展示（具備左右切換燈箱群組） -->
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-11 text-center">
+            <div class="p-3 rounded" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08);">
+              <h4 class="text-white mb-4" style="font-size: 1.6rem; font-weight: bold;">分鏡表 (Film Story Board)</h4>
+              
+              <div class="row justify-content-center" id="storyboard-gallery">
+                <div class="col-md-4 col-6 mb-4">
+                  <a href="img/媒體.jpg" class="gallery-lightbox" title="分鏡表 1 / 3">
+                    <img src="img/媒體.jpg" alt="分鏡表 1" class="img-fluid rounded shadow-sm mx-auto d-block" style="max-height: 280px; width: 100%; object-fit: contain;">
+                  </a>
+                </div>
+                <div class="col-md-4 col-6 mb-4">
+                  <a href="img/image4.jpeg" class="gallery-lightbox" title="分鏡表 2 / 3">
+                    <img src="img/image4.jpeg" alt="分鏡表 2" class="img-fluid rounded shadow-sm mx-auto d-block" style="max-height: 280px; width: 100%; object-fit: contain;">
+                  </a>
+                </div>
+                <div class="col-md-4 col-6 mb-4">
+                  <a href="img/image5.jpeg" class="gallery-lightbox" title="分鏡表 3 / 3">
+                    <img src="img/image5.jpeg" alt="分鏡表 3" class="img-fluid rounded shadow-sm mx-auto d-block" style="max-height: 280px; width: 100%; object-fit: contain;">
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 製作團隊區塊 -->
+    <section id="testimonials" class="parallax-window text-white" style="background-image: url('img/dog3.jpg');">  
+      <div class="custom-overlay" style="padding-top: 100px; padding-bottom: 100px;">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12 text-center text-white mb-5">
+              <h2 class="tm-section-title font-weight-bold" style="text-shadow: 0 2px 8px rgba(0,0,0,0.9);">製作團隊與分工</h2>
+              <p class="mt-2 text-white-50" style="font-size: 1.35rem;">專題製作團隊成員</p>
+            </div>
+          </div>
+          
+          <div class="row text-center mb-4">
+            <div class="col-md-4 mb-4">
+              <div class="team-card mx-auto">
+                <figcaption>盧星霏 : 攝影</figcaption>
+              </div>
+            </div>
+            <div class="col-md-4 mb-4">
+              <div class="team-card mx-auto">
+                <figcaption>唐翊慈 : 美術</figcaption>
+              </div>
+            </div>
+            <div class="col-md-4 mb-4">
+              <div class="team-card mx-auto">
+                <figcaption>蔡欣芸 : 製片</figcaption>
+              </div>
+            </div>
+          </div>
+
+          <div class="row text-center">
+            <div class="col-md-4 mb-4">
+              <div class="team-card mx-auto">
+                <figcaption>蕭威力 : 剪片</figcaption>
+              </div>
+            </div>
+            <div class="col-md-4 mb-4">
+              <div class="team-card mx-auto">
+                <figcaption>胡智盛 : 網頁</figcaption>
+              </div>
+            </div>
+            <div class="col-md-4 mb-4">
+              <div class="team-card mx-auto">
+                <figcaption>蔡君翰 : 音效</figcaption>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- 專題預告區塊 -->
+    <section id="contact" class="tm-section-pad-top bg-dark text-white" style="padding-bottom: 60px; border-top: 1px solid rgba(255,255,255,0.05);">
+      <div class="container">
+        <div class="row">
+            <div class="text-center col-12 mb-4">
+                <h2 class="tm-text-primary tm-section-title mb-3 font-weight-bold" style="letter-spacing: 2px;">專題預告片</h2>
+                <p class="text-light-muted" style="font-size: 1.35rem;">—— 轉身之後，給牠一個不再流浪的承諾 ——</p>
+            </div>
+            <div class="col-lg-8 mx-auto mb-5">
+              <div class="embed-responsive embed-responsive-16by9 rounded shadow-lg" style="border: 1px solid rgba(255,255,255,0.2);">
+                <video class="embed-responsive-item" controls preload="metadata" poster="img/dog1.jpg">
+                  <source src="img/預告片.mp4" type="video/mp4">
+                  您的瀏覽器不支援 HTML5 影片播放。
+                </video>
+              </div>
+            </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12 text-center tm-next">
+            <a href="#infinite" class="tm-down-arrow-link d-inline-block p-2" title="返回首頁">
+              <i class="fas fa-2x fa-arrow-up tm-down-arrow"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer class="bg-dark text-center py-4 border-top border-secondary text-light-muted" style="font-size: 1.15rem;">
+      <p class="mb-0">F05有責無患，浪愛歸巢 &nbsp;指導老師:蕭雅函 專題組員:盧星霏 唐翊慈 蔡欣芸 蕭威力 胡智盛 蔡君翰</p>
+    </footer>
+
+    <!-- JS 腳本：確保使用相容性良好的 jQuery 版本 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="slick/slick.min.js"></script>
+    <script src="magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    
+    <script>
+      $(document).ready(function(){
+        // 導覽列滾動變深色背景
+        $(window).scroll(function(e){        
+          if($(document).scrollTop() > 50) {
+            $('.tm-navbar').addClass("bg-dark");
+          } else {
+            $('.tm-navbar').removeClass("bg-dark");
+          }
+        });
+
+        // 手機版點擊導覽連結後自動收合選單
+        $('.navbar-nav .nav-link').click(function(){
+          $('.navbar-collapse').collapse('hide');
+        });
+
+        // 一般單張圖片燈箱 (LOGO, SWOT, 甘特圖)
+        $('.popup-link').magnificPopup({
+          type: 'image',
+          closeOnContentClick: true,
+          closeBtnInside: false,
+          mainClass: 'mfp-no-margins mfp-with-zoom',
+          image: {
+            verticalFit: true
+          }
+        });
+
+        // 分鏡表專用：群組燈箱 (Gallery) 模式，支援左右切換與計數提示
+        $('#storyboard-gallery').magnificPopup({
+          delegate: 'a.gallery-lightbox',
+          type: 'image',
+          gallery: {
+            enabled: true,
+            navigateByImgClick: true,
+            preload: [0, 1]
+          },
+          image: {
+            tError: '<a href="%url%">此圖片</a> 無法載入。'
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
