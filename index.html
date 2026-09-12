@@ -136,27 +136,52 @@
         background: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 15px;
-        padding: 25px 20px;
+        padding: 25px 15px;
         transition: all 0.3s ease;
         height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* 讓內部元素水平置中 */
+        justify-content: center; /* 讓內部元素垂直置中 */
       }
       .team-card:hover {
         transform: translateY(-5px);
         background: rgba(255, 255, 255, 0.08);
         border-color: #38b6ff;
       }
-      .team-img {
-        width: 130px;
-        height: 130px;
-        object-fit: cover;
+      
+      /* 調整團隊大頭貼比例與外觀，使其維持漂亮的比例並可點擊放大，同時置中 */
+      .team-avatar-wrapper {
+        width: 140px;
+        height: 140px;
+        margin: 0 auto 15px auto; /* 確保左右 margin 為 auto，達成水平置中 */
         border-radius: 50%;
+        overflow: hidden;
         border: 3px solid rgba(255, 255, 255, 0.2);
-        margin-bottom: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        transition: transform 0.3s ease, border-color 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
+      .team-card:hover .team-avatar-wrapper {
+        border-color: #38b6ff;
+        transform: scale(1.05);
+      }
+      .team-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
       .team-card figcaption {
         font-size: 1.35rem;
         font-weight: bold;
         color: #38b6ff;
+        margin-top: 10px;
+        width: 100%;
+        text-align: center; /* 確保名字文字置中 */
       }
 
       .popup-link, .gallery-lightbox {
@@ -366,16 +391,31 @@
           <div class="row text-center mb-4">
             <div class="col-md-4 mb-4">
               <div class="team-card mx-auto">
+                <a href="img/12.jpg" class="popup-link" title="盧星霏 : 攝影">
+                  <div class="team-avatar-wrapper">
+                    <img src="img/12.jpg" alt="盧星霏" class="team-img">
+                  </div>
+                </a>
                 <figcaption>盧星霏 : 攝影</figcaption>
               </div>
             </div>
             <div class="col-md-4 mb-4">
               <div class="team-card mx-auto">
+                <a href="img/13.jpg" class="popup-link" title="唐翊慈 : 美術">
+                  <div class="team-avatar-wrapper">
+                    <img src="img/13.jpg" alt="唐翊慈" class="team-img">
+                  </div>
+                </a>
                 <figcaption>唐翊慈 : 美術</figcaption>
               </div>
             </div>
             <div class="col-md-4 mb-4">
               <div class="team-card mx-auto">
+                <a href="img/14.jpg" class="popup-link" title="蔡欣芸 : 製片">
+                  <div class="team-avatar-wrapper">
+                    <img src="img/14.jpg" alt="蔡欣芸" class="team-img">
+                  </div>
+                </a>
                 <figcaption>蔡欣芸 : 製片</figcaption>
               </div>
             </div>
@@ -384,16 +424,31 @@
           <div class="row text-center">
             <div class="col-md-4 mb-4">
               <div class="team-card mx-auto">
+                <a href="img/15.jpg" class="popup-link" title="蕭威力 : 剪片">
+                  <div class="team-avatar-wrapper">
+                    <img src="img/15.jpg" alt="蕭威力" class="team-img">
+                  </div>
+                </a>
                 <figcaption>蕭威力 : 剪片</figcaption>
               </div>
             </div>
             <div class="col-md-4 mb-4">
               <div class="team-card mx-auto">
+                <a href="img/16.jpg" class="popup-link" title="胡智盛 : 網頁">
+                  <div class="team-avatar-wrapper">
+                    <img src="img/16.jpg" alt="胡智盛" class="team-img">
+                  </div>
+                </a>
                 <figcaption>胡智盛 : 網頁</figcaption>
               </div>
             </div>
             <div class="col-md-4 mb-4">
               <div class="team-card mx-auto">
+                <a href="img/17.jpg" class="popup-link" title="蔡君翰 : 音效">
+                  <div class="team-avatar-wrapper">
+                    <img src="img/17.jpg" alt="蔡君翰" class="team-img">
+                  </div>
+                </a>
                 <figcaption>蔡君翰 : 音效</figcaption>
               </div>
             </div>
@@ -457,7 +512,7 @@
           $('.navbar-collapse').collapse('hide');
         });
 
-        // 一般單張圖片燈箱 (LOGO, SWOT, 甘特圖)
+        // 一般單張圖片燈箱 (LOGO, SWOT, 甘特圖, 團隊大頭貼)
         $('.popup-link').magnificPopup({
           type: 'image',
           closeOnContentClick: true,
